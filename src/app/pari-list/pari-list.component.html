@@ -1,3 +1,7 @@
-<p *ngFor="let pari of pariList">
-  <app-pari-item [pari]=pari></app-pari-item>
-</p>
+<div class="text-right py-3">
+  <input class="btn btn-primary" value="Новый спор" [routerLink]="['/pari', 'edit']">
+</div>
+
+<div *ngFor="let pari of pariList">
+  <app-pari-item [pari]=pari [routerLink]="['/pari', pari.id]"></app-pari-item>
+</div>

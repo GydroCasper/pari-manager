@@ -1,0 +1,9 @@
+div {
+    height: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+div:hover{
+    background-color: lightgreen;
+}

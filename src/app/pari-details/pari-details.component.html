@@ -1,3 +1,12 @@
-<p>
-  {{pari.name}}
-</p>
+<div class="card">
+  <div class="card-header">
+    {{pari.name}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">Дата окончания: {{pari.date | date:'dd.MM.yyyy'}}</p>
+    <app-pari-judges [judges]="pari.judges"></app-pari-judges>
+    <div class="text-right py-3">
+      <a href="#" class="btn btn-primary">Назад</a>
+    </div>  
+  </div>
+</div>

@@ -8,8 +8,8 @@ export class PariListService{
 
     getPariList() : Pari[]{
         this.pariList = [
-            {name: "Выебать Лёху на тему Курил", id: 'a532852b-cab6-4db8-94c7-db447ff65c8e', date: null, judges: null, attitudes: null}, 
-            {name: "Поиметь Бобруцкова на тему Кокорина и Мамаева", id: '086d2f11-775c-425d-9bb4-c2ce107c0cc7', date: null, judges: null, attitudes: null}
+            {name: "Выебать Лёху на тему Курил", id: 'a532852b-cab6-4db8-94c7-db447ff65c8e', date: new Date(2019, 1, 1), judges: ['Вася', 'Петя'], attitudes: null}, 
+            {name: "Поиметь Бобруцкова на тему Кокорина и Мамаева", id: '086d2f11-775c-425d-9bb4-c2ce107c0cc7', date: new Date(2018, 12, 5), judges: ['Пьерлуиджи Колина'], attitudes: null}
         ];
 
         return this.pariList.slice();

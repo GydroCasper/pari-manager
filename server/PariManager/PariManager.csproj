@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AWSProjectType>Lambda</AWSProjectType>
-    <FileVersion>1.0.2.6910</FileVersion>
+    <FileVersion>1.0.5.6910</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

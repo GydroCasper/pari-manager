@@ -14,9 +14,9 @@ namespace PariManager
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string FunctionHandler(HuyEvent input, ILambdaContext context)
         {
-            return "???? ??? ???";
+            return "Poka chto huy";
         }
     }
 }

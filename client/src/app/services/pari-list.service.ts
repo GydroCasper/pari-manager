@@ -1,33 +1,25 @@
 import { Pari} from '../shared/pari';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { httpConstsService } from '../shared/const/httpConstsService';
 
 @Injectable()
 export class PariListService implements OnInit{
-    pariList: Pari[];
-
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private httpConstsService: httpConstsService) {
     }
 
     ngOnInit() {
-        this.pariList = this.getPariList();
     }
 
-    async getPariList() : Pari[]{
-        return await this.http.get<Pari[]>("https://ctd84g68jc.execute-api.us-east-1.amazonaws.com/prod/pari").toPromise();
-        // var s = this.http.get<Pari[]>("https://ctd84g68jc.execute-api.us-east-1.amazonaws.com/prod/pari").subscribe(value => {
-        //     this.pariList = value;
-        //     return this.pariList.slice();
-        // }, error => { 
-        //     console.log(error);
-        //     return null;
-        // });
+    getPariList(): Observable<Pari[]>{
+        return this.http.get<Pari[]>(this.httpConstsService.getPariListUrl); 
     }
 
-    getPariById(id: string): Pari {
-        for(var i=0;i<this.pariList.length;i++){
-            var el = this.pariList[i];
-            if(el.id === id) return el;
-        }
-    }
+    // getPariById(id: string): Pari {
+    //     for(var i=0;i<this.pariList.length;i++){
+    //         var el = this.pariList[i];
+    //         if(el.id === id) return el;
+    //     }
+    // }
 }

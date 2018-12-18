@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PariListService } from '../services/pari-list.service';
-import { Pari } from '../shared/pari';
 
 @Component({
   selector: 'app-pari-details',
@@ -9,11 +8,10 @@ import { Pari } from '../shared/pari';
   styleUrls: ['./pari-details.component.css']
 })
 export class PariDetailsComponent implements OnInit {
-  pari: Pari = this.pariListService.getPariById(this.route.snapshot.params['id']);
+  // pari: Pari = this.pariListService.getPariById(this.route.snapshot.params['id']);
 
   constructor(private route: ActivatedRoute, private pariListService: PariListService) { }
 
   ngOnInit() {
   }
-
 }

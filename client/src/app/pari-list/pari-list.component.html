@@ -2,6 +2,6 @@
   <input class="btn btn-primary" value="Новый спор" [routerLink]="['/pari', 'edit']">
 </div>
 
-<div *ngFor="let pari of pariList">
+<div *ngFor="let pari of pariList | async">
   <app-pari-item [pari]=pari [routerLink]="['/pari', pari.id]"></app-pari-item>
 </div>

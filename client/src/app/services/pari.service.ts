@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { httpConstsService } from '../shared/const/httpConstsService';
 
 @Injectable()
-export class PariListService implements OnInit{
+export class PariService implements OnInit{
     constructor(private http: HttpClient, private httpConstsService: httpConstsService) {
     }
 
@@ -16,10 +16,7 @@ export class PariListService implements OnInit{
         return this.http.get<Pari[]>(this.httpConstsService.getPariListUrl); 
     }
 
-    // getPariById(id: string): Pari {
-    //     for(var i=0;i<this.pariList.length;i++){
-    //         var el = this.pariList[i];
-    //         if(el.id === id) return el;
-    //     }
-    // }
+    getPariDetails(id: number): Observable<Pari>{
+        return this.http.get<Pari>(this.httpConstsService.getPariDetailsUrl + "/" + id);
+    }
 }

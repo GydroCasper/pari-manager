@@ -10,10 +10,10 @@ namespace PariManager
 {
     public class Function
     {
-        public async Task<object> FunctionHandler(QueryDto input, ILambdaContext context)
+        public async Task<object> FunctionHandler(object input, ILambdaContext context)
         {
             var query = new Query();
-            return await query.Execute(input);
+            return await query.Execute((QueryDto)input);
         }
     }
 }

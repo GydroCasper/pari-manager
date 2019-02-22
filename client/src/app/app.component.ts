@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PariListService } from './services/pari-list.service';
+import { PariService } from './services/pari.service';
 import { httpConstsService } from './shared/const/httpConstsService';
 
 @Component({
@@ -7,7 +7,7 @@ import { httpConstsService } from './shared/const/httpConstsService';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [
-    PariListService,
+    PariService,
     httpConstsService
   ]
 })

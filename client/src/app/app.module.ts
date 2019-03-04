@@ -10,6 +10,7 @@ import { PariItemComponent } from './pari-item/pari-item.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PariDetailsEditComponent } from './pari-details-edit/pari-details-edit.component';
 import { PariJudgesComponent } from './pari-details/pari-judges/pari-judges.component';
+import { PariAttitudeComponent } from './pari-details/pari-attitude/pari-attitude.component';
 
 const appRoutes: Routes = [
   { path: '', component: PariListComponent},
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     PariDetailsComponent,
     PariItemComponent,
     PariDetailsEditComponent,
-    PariJudgesComponent
+    PariJudgesComponent,
+    PariAttitudeComponent
   ],
   imports: [
     BrowserModule,

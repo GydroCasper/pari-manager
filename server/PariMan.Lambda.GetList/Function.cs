@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Amazon.Lambda.Core;
+using Microsoft.EntityFrameworkCore;
 using PariService.Dto;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -9,7 +10,7 @@ namespace PariMan.Lambda.GetList
 {
     public class Function
     {
-        
+
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
         /// </summary>
@@ -18,10 +19,16 @@ namespace PariMan.Lambda.GetList
         /// <returns></returns>
         public List<PariItem> FunctionHandler(object input, ILambdaContext context)
         {
+            using (var dbContext = new DbContext("Data Source=" + "parimandb" + "; Initial Catalog=" + "pari" + ";User ID=" + "parimandbadmin" + ";Password=" + "venKolumad17" + ";"))
+            {
+
+            }
+
+
             return new List<PariItem>
             {
-                new PariItem { Name = "Отдать нахер все острова"},
-                new PariItem { Name = "Отпетушарить Мамаева и Кокорина"}
+                new PariItem {Name = "Отдать нахер все острова"},
+                new PariItem {Name = "Отпетушарить Мамаева и Кокорина"}
             };
         }
     }

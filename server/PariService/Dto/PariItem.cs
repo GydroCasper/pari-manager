@@ -6,11 +6,11 @@ namespace PariService.Dto
 {
     public class PariItem
     {
-        [JsonProperty("name")]
-        public string Name;
-
         [JsonProperty("id")]
         public Guid Id;
+
+        [JsonProperty("name")]
+        public string Name;
 
         [JsonProperty("date")]
         public DateTime Date;

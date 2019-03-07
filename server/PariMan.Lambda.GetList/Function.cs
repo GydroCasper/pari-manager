@@ -1,7 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Amazon.Lambda.Core;
-using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using PariMan.Lambda.GetList.Code;
+using PariMan.Lambda.GetList.Interfaces;
+using PariService.Code;
+using PariService.Database;
 using PariService.Dto;
+using PariService.Helpers;
+using PariService.Interfaces;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -14,22 +23,35 @@ namespace PariMan.Lambda.GetList
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="context"></param>
+        /// <param Name="input"></param>
+        /// <param Name="context"></param>
         /// <returns></returns>
-        public List<PariItem> FunctionHandler(object input, ILambdaContext context)
+        public async Task<List<PariItem>> FunctionHandler(object input, ILambdaContext context)
         {
-            using (var dbContext = new DbContext("Data Source=" + "parimandb" + "; Initial Catalog=" + "pari" + ";User ID=" + "parimandbadmin" + ";Password=" + "venKolumad17" + ";"))
+            var serviceProvider = BuildServiceProvider();
+
+            return await serviceProvider.GetService<IRun>().Run();
+        }
+
+        private static IServiceProvider BuildServiceProvider()
+        {
+            var serviceCollection = new ServiceCollection();
+
+            serviceCollection.AddSingleton<IPariList, Pari>();
+            serviceCollection.AddScoped<IRun, App>();
+
+            serviceCollection.AddEntityFrameworkNpgsql();
+            serviceCollection.AddDbContext<PariDbContext>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
             {
+                mc.AddProfile(new MappingProfile());
+            });
 
-            }
+            var mapper = mappingConfig.CreateMapper();
+            serviceCollection.AddSingleton(mapper);
 
-
-            return new List<PariItem>
-            {
-                new PariItem {Name = "Отдать нахер все острова"},
-                new PariItem {Name = "Отпетушарить Мамаева и Кокорина"}
-            };
+            return serviceCollection.BuildServiceProvider();
         }
     }
 }

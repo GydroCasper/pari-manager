@@ -14,8 +14,8 @@ namespace PariMan.Lambda.GetPari
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="context"></param>
+        /// <param Name="item"></param>
+        /// <param Name="context"></param>
         /// <returns></returns>
         public PariItem FunctionHandler(PariItem item, ILambdaContext context)
         {

@@ -4,7 +4,7 @@ namespace PariService.Dto
 {
     public class QueryDto
     {
-        [JsonProperty("name")]
+        [JsonProperty("Name")]
         public string Name;
 
         [JsonProperty("payload")]

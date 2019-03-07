@@ -15,7 +15,7 @@ namespace PariService.Code.Handlers
 
         public Task<object> ExecuteQuery(object query)
         {
-            return _pariList.Get();
+            return null; //_pariList.Get();
         }
     }
 }

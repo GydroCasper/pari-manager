@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using PariService.Dto;
 
-namespace PariService.Interfaces
+namespace PariMan.Lambda.GetList.Interfaces
 {
-    public interface IPariList
+    public interface IRun
     {
-        Task<List<PariItem>> Get();
+        Task<List<PariItem>> Run();
     }
 }

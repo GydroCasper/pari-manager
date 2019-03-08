@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Newtonsoft.Json;
 
 namespace PariService.Helpers
@@ -13,5 +14,8 @@ namespace PariService.Helpers
 
         [JsonProperty("message")]
         public string ErrorMessage;
+
+        [JsonProperty("requestId")]
+        public string RequestId;
     }
 }

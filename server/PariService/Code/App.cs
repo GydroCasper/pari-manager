@@ -15,7 +15,7 @@ namespace PariService.Code
             _logger = logger;
         }
 
-        public async Task<PariResponse<TResult>> Run<TArg, TResult>(Func<TArg, Task<TResult>> func, TArg arg)
+        public async Task<PariResponse<TResult>> Run<TArg, TResult>(Func<TArg, Task<TResult>> func, TArg arg, string requestId)
         {
             try
             {
@@ -24,11 +24,11 @@ namespace PariService.Code
             }
             catch (Exception ex)
             {
-                return LogException<TResult>(ex);
+                return LogException<TResult>(ex, requestId);
             }
         }
 
-        public async Task<PariResponse<TResult>> Run<TResult>(Func<Task<TResult>> func)
+        public async Task<PariResponse<TResult>> Run<TResult>(Func<Task<TResult>> func, string requestId)
         {
             try
             {
@@ -37,19 +37,20 @@ namespace PariService.Code
             }
             catch (Exception ex)
             {
-                return LogException<TResult>(ex);
+                return LogException<TResult>(ex, requestId);
             }
         }
 
-        private PariResponse<TResult> LogException<TResult>(Exception ex)
+        private PariResponse<TResult> LogException<TResult>(Exception ex, string requestId)
         {
-            _logger.LogException(ex);
+            _logger.LogException(ex, requestId);
 
             return new PariResponse<TResult>
             {
                 Status = HttpStatusCode.InternalServerError,
                 Body = default,
-                ErrorMessage = ex.Message
+                ErrorMessage = ex.Message,
+                RequestId = requestId
             };
         }
 

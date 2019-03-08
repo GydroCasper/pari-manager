@@ -27,7 +27,7 @@ namespace PariMan.Lambda.GetList
             var app = serviceProvider.GetService<IRun>();
             var handler = serviceProvider.GetService<IPariList>();
 
-            return await app.Run(handler.Get);
+            return await app.Run(handler.Get, context.AwsRequestId);
         }
     }
 }

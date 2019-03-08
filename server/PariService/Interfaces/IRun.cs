@@ -6,8 +6,8 @@ namespace PariService.Interfaces
 {
     public interface IRun
     {
-        Task<PariResponse<TResult>> Run<TArg, TResult>(Func<TArg, Task<TResult>> func, TArg arg);
+        Task<PariResponse<TResult>> Run<TArg, TResult>(Func<TArg, Task<TResult>> func, TArg arg, string requestId);
 
-        Task<PariResponse<TResult>> Run<TResult>(Func<Task<TResult>> func);
+        Task<PariResponse<TResult>> Run<TResult>(Func<Task<TResult>> func, string requestId);
     }
 }

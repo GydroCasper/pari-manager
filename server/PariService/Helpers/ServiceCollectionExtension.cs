@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PariService.Code;
@@ -7,11 +8,14 @@ using PariService.Interfaces;
 
 namespace PariService.Helpers
 {
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionFactory
     {
-        public static IServiceCollection AddPariDependencies(this IServiceCollection services)
+        public static IServiceProvider AddPariDependencies(Func<IServiceCollection, IServiceCollection> registerDependencies)
         {
+            var services = new ServiceCollection();
+
             services.AddSingleton<ILogger, Logger>();
+            services.AddScoped<IRun, App>();
 
             services.AddEntityFrameworkNpgsql();
             services.AddDbContext<PariDbContext>();
@@ -30,7 +34,9 @@ namespace PariService.Helpers
 
             services.AddOptions();
 
-            return services;
+            registerDependencies(services);
+
+            return services.BuildServiceProvider();
         }
 
         private static IConfiguration BuildConfiguration()

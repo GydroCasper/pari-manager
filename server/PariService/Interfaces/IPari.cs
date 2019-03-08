@@ -6,6 +6,6 @@ namespace PariService.Interfaces
 {
     public interface IPari
     {
-        Task<PariItem> Get(Guid id);
+        Task<PariItem> Get(Guid? id);
     }
 }

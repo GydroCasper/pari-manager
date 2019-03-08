@@ -29,8 +29,10 @@ namespace PariService.Code
             return res.Select(x => _mapper.Map<PariItem>(x)).ToList();
         }
 
-        public async Task<PariItem> Get(Guid id)
+        public async Task<PariItem> Get(Guid? id)
         {
+            if(!id.HasValue) throw new PariException("Bet is empty");
+
             var item = (from p in _dbContext.Paris
                 join j in _dbContext.Judges on p.Id equals j.PariId
                 join uj in _dbContext.Users on j.UserId equals uj.Id

@@ -20,9 +20,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Code\Handlers\" />
-    <Folder Include="Interfaces\Handlers\" />
-  </ItemGroup>
-
 </Project>

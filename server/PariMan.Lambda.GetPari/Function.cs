@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 using Microsoft.Extensions.DependencyInjection;
-using PariMan.Lambda.GetPari.Code;
-using PariMan.Lambda.GetPari.Interfaces;
 using PariService.Code;
 using PariService.Dto;
 using PariService.Helpers;
@@ -16,23 +13,13 @@ namespace PariMan.Lambda.GetPari
 {
     public class Function
     {
-        public async Task<PariItem> FunctionHandler(PariItem item, ILambdaContext context)
+        public async Task<PariResponse<PariItem>> FunctionHandler(PariItem item, ILambdaContext context)
         {
-            var serviceProvider = BuildServiceProvider();
+            var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x => x.AddSingleton<IPari, Pari>());
+            var app = serviceProvider.GetService<IRun>();
+            var handler = serviceProvider.GetService<IPari>();
 
-            return await serviceProvider.GetService<IRun>().Run(item?.Id);
-        }
-
-        private static IServiceProvider BuildServiceProvider()
-        {
-            var serviceCollection = new ServiceCollection();
-
-            serviceCollection.AddSingleton<IPari, Pari>();
-            serviceCollection.AddScoped<IRun, App>();
-
-            serviceCollection.AddPariDependencies();
-
-            return serviceCollection.BuildServiceProvider();
+            return await app.Run(handler.Get, item?.Id);
         }
     }
 }

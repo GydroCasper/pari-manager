@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { PariDetailsEditComponent } from './pari-details-edit/pari-details-edit.
 import { PariJudgesComponent } from './pari-details/pari-judges/pari-judges.component';
 import { PariAttitudeComponent } from './pari-details/pari-attitude/pari-attitude.component';
 import { PariBettorsComponent } from './pari-details/pari-attitude/pari-bettor/pari-bettors.component';
+import { ResponseInterceptor } from './interceptors/response-interceptor';
 
 const appRoutes: Routes = [
   { path: '', component: PariListComponent},
@@ -37,7 +38,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

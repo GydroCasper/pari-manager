@@ -12,7 +12,7 @@ namespace PariService.Database
         [Column("user_id")]
         public Guid UserId { get; set; }
 
-        [Column("pari-id")]
+        [Column("pari_id")]
         public Guid PariId { get; set; }
     }
 }

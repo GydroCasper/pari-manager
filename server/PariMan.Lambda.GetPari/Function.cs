@@ -1,7 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using Amazon.Lambda.Core;
+using Microsoft.Extensions.DependencyInjection;
+using PariMan.Lambda.GetPari.Code;
+using PariMan.Lambda.GetPari.Interfaces;
+using PariService.Code;
 using PariService.Dto;
+using PariService.Helpers;
+using PariService.Interfaces;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -10,24 +16,23 @@ namespace PariMan.Lambda.GetPari
 {
     public class Function
     {
-
-        /// <summary>
-        /// A simple function that takes a string and does a ToUpper
-        /// </summary>
-        /// <param Name="item"></param>
-        /// <param Name="context"></param>
-        /// <returns></returns>
-        public PariItem FunctionHandler(PariItem item, ILambdaContext context)
+        public async Task<PariItem> FunctionHandler(PariItem item, ILambdaContext context)
         {
-            return new PariItem
-            {
-                Name = "Наебнуть СБТ",
-                Attitudes = new List<Attitude>
-                {
-                    new Attitude {Id = Guid.Empty, Description = "123", Bettors = new List<string> {"Вася", "Петя"}, Name = "Позиция 1"},
-                    new Attitude {Id = Guid.Empty, Name = "Позиция 2", Description = "abc", Bettors = new List<string> {"Магомед"}}
-                }
-            };
+            var serviceProvider = BuildServiceProvider();
+
+            return await serviceProvider.GetService<IRun>().Run(item?.Id);
+        }
+
+        private static IServiceProvider BuildServiceProvider()
+        {
+            var serviceCollection = new ServiceCollection();
+
+            serviceCollection.AddSingleton<IPari, Pari>();
+            serviceCollection.AddScoped<IRun, App>();
+
+            serviceCollection.AddPariDependencies();
+
+            return serviceCollection.BuildServiceProvider();
         }
     }
 }

@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PariDetailsEditComponent } from './pari-details-edit/pari-details-edit.component';
 import { PariJudgesComponent } from './pari-details/pari-judges/pari-judges.component';
 import { PariAttitudeComponent } from './pari-details/pari-attitude/pari-attitude.component';
+import { PariBettorsComponent } from './pari-details/pari-attitude/pari-bettor/pari-bettors.component';
 
 const appRoutes: Routes = [
   { path: '', component: PariListComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     PariItemComponent,
     PariDetailsEditComponent,
     PariJudgesComponent,
-    PariAttitudeComponent
+    PariAttitudeComponent,
+    PariBettorsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using PariMan.Lambda.GetList.Code;
 using PariMan.Lambda.GetList.Interfaces;
 using PariService.Code;
-using PariService.Database;
 using PariService.Dto;
 using PariService.Helpers;
 using PariService.Interfaces;
@@ -40,16 +38,7 @@ namespace PariMan.Lambda.GetList
             serviceCollection.AddSingleton<IPariList, Pari>();
             serviceCollection.AddScoped<IRun, App>();
 
-            serviceCollection.AddEntityFrameworkNpgsql();
-            serviceCollection.AddDbContext<PariDbContext>();
-
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
-
-            var mapper = mappingConfig.CreateMapper();
-            serviceCollection.AddSingleton(mapper);
+            serviceCollection.AddPariDependencies();
 
             return serviceCollection.BuildServiceProvider();
         }

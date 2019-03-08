@@ -15,7 +15,7 @@ namespace PariService.Database
         [Column("description")]
         public string Description { get; set; }
 
-        [Column("pari-id")]
+        [Column("pari_id")]
         public Guid PariId { get; set; }
     }
 }

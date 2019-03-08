@@ -6,10 +6,10 @@ namespace PariService.Dto
 {
     public class Attitude
     {
-        [JsonProperty("Id")]
+        [JsonProperty("id")]
         public Guid Id;
 
-        [JsonProperty("Name")]
+        [JsonProperty("name")]
         public string Name;
 
         [JsonProperty("description")]

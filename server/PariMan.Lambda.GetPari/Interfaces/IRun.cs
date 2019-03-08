@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 using PariService.Dto;
 
@@ -6,6 +6,6 @@ namespace PariMan.Lambda.GetPari.Interfaces
 {
     public interface IRun
     {
-        Task<List<PariItem>> Run();
+        Task<PariItem> Run(Guid? id);
     }
 }

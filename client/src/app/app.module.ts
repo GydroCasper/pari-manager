@@ -13,6 +13,11 @@ import { PariJudgesComponent } from './pari-details/pari-judges/pari-judges.comp
 import { PariAttitudeComponent } from './pari-details/pari-attitude/pari-attitude.component';
 import { PariBettorsComponent } from './pari-details/pari-attitude/pari-bettor/pari-bettors.component';
 import { ResponseInterceptor } from './interceptors/response-interceptor';
+import { PariAttitudeEditComponent } from './pari-details-edit/pari-attitude-edit/pari-attitude-edit.component';
+import { PariJudgesEditComponent } from './pari-details-edit/pari-judges-edit/pari-judges-edit.component';
+import { PariBettorsEditComponent } from './pari-details-edit/pari-attitude-edit/pari-bettors-edit/pari-bettors-edit.component';
+import { PariBettorEditComponent } from './pari-details-edit/pari-attitude-edit/pari-bettors-edit/pari-bettor-edit/pari-bettor-edit.component';
+import { PariJudgeEditComponent } from './pari-details-edit/pari-judges-edit/pari-judge-edit/pari-judge-edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: PariListComponent},
@@ -30,7 +35,12 @@ const appRoutes: Routes = [
     PariDetailsEditComponent,
     PariJudgesComponent,
     PariAttitudeComponent,
-    PariBettorsComponent
+    PariBettorsComponent,
+    PariAttitudeEditComponent,
+    PariJudgesEditComponent,
+    PariBettorsEditComponent,
+    PariBettorEditComponent,
+    PariJudgeEditComponent
   ],
   imports: [
     BrowserModule,

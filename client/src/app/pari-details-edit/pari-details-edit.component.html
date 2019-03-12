@@ -1,2 +1,11 @@
 Суть спора:
 <textarea class="form-control" rows="5"></textarea>
+
+<div>
+    Дата окончания спора:
+    <input type="text">
+</div>
+
+<app-pari-attitude-edit *ngFor="let attitude of pari.attitudes" [attitude]="attitude"></app-pari-attitude-edit>
+
+<app-pari-judges-edit [judges]="pari.judge"></app-pari-judges-edit>

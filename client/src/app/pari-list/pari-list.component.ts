@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pari-list.component.css']
 })
 export class PariListComponent implements OnInit, OnDestroy {
-
   pariList: Pari[];
   pariListSubscription: Subscription;
 

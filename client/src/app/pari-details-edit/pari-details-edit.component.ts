@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PariDetailsEditComponent implements OnInit, OnDestroy {
   pari: Pari = {
-    id: null,
+    id: '00000000-0000-0000-0000-000000000000',
     name: null,
     date: new Date(),
     judges: null,

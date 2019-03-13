@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28705.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariManager", "PariManager\PariManager.csproj", "{A9942B92-1356-41A1-8FDB-9FFB838E502D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariManager.Tests", "PariManager.Tests\PariManager.Tests.csproj", "{75656FA2-C927-4D62-A785-9D43E9EF7233}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariService", "PariService\PariService.csproj", "{B107A6C2-E743-4B2C-BB75-2A900257428D}"
@@ -21,16 +19,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariMan.Lambda.GetPari", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariMan.Lambda.GetPari.Tests", "PariMan.Lambda.GetPari.Tests\PariMan.Lambda.GetPari.Tests.csproj", "{EB98A5A4-0BC2-4D44-8E64-78929BBA89BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandLambdas", "CommandLambdas", "{9C0D9F98-B66A-428B-A43A-4C28E412D410}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PariMan.Lambda.ExecuteCommand", "PariMan.Lambda.ExecuteCommand\PariMan.Lambda.ExecuteCommand.csproj", "{AE794E0F-B62F-4708-A6DD-1EB15692BF7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9942B92-1356-41A1-8FDB-9FFB838E502D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9942B92-1356-41A1-8FDB-9FFB838E502D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9942B92-1356-41A1-8FDB-9FFB838E502D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9942B92-1356-41A1-8FDB-9FFB838E502D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75656FA2-C927-4D62-A785-9D43E9EF7233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75656FA2-C927-4D62-A785-9D43E9EF7233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75656FA2-C927-4D62-A785-9D43E9EF7233}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +53,10 @@ Global
 		{EB98A5A4-0BC2-4D44-8E64-78929BBA89BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB98A5A4-0BC2-4D44-8E64-78929BBA89BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB98A5A4-0BC2-4D44-8E64-78929BBA89BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE794E0F-B62F-4708-A6DD-1EB15692BF7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE794E0F-B62F-4708-A6DD-1EB15692BF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE794E0F-B62F-4708-A6DD-1EB15692BF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE794E0F-B62F-4708-A6DD-1EB15692BF7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +67,7 @@ Global
 		{F0136E73-A310-4DE3-9CAF-0EF9A408A562} = {DE5E0E9C-C241-4ED0-AE28-BF19879B93E4}
 		{B30F9276-2CB6-4342-A41B-DFF5939B7C03} = {2559BB6D-750C-43BC-B7C4-E196CDC00B3B}
 		{EB98A5A4-0BC2-4D44-8E64-78929BBA89BA} = {DE5E0E9C-C241-4ED0-AE28-BF19879B93E4}
+		{AE794E0F-B62F-4708-A6DD-1EB15692BF7D} = {9C0D9F98-B66A-428B-A43A-4C28E412D410}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28B773ED-1B51-494D-99C2-BAFBE00B7916}

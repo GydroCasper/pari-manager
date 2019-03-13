@@ -10,5 +10,8 @@ cd ./server/PariMan.Lambda.GetPari
 dotnet build
 dotnet lambda deploy-function pariMan-get-pari --profile gydrocasper
 cd ../..
+cd ./server/PariMan.Lambda.ExecuteCommand
+dotnet build
+dotnet lambda deploy-function pariMan-execute-command --profile gydrocasper
 dir
 

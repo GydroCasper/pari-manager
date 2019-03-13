@@ -14,20 +14,19 @@ namespace PariMan.Lambda.GetList
 {
     public class Function
     {
+        private readonly IRun _app;
+        private readonly IPariList _handler;
 
-        /// <summary>
-        /// A simple function that takes a string and does a ToUpper
-        /// </summary>
-        /// <param Name="input"></param>
-        /// <param Name="context"></param>
-        /// <returns></returns>
-        public async Task<PariResponse<List<PariItem>>> FunctionHandler(object input, ILambdaContext context)
+        public Function()
         {
             var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x => x.AddSingleton<IPariList, Pari>());
-            var app = serviceProvider.GetService<IRun>();
-            var handler = serviceProvider.GetService<IPariList>();
+            _app = serviceProvider.GetService<IRun>();
+            _handler = serviceProvider.GetService<IPariList>();
+        }
 
-            return await app.Run(handler.Get, context.AwsRequestId);
+        public async Task<PariResponse<List<PariItem>>> FunctionHandler(object input, ILambdaContext context)
+        {
+            return await _app.Run(_handler.Get, context.AwsRequestId);
         }
     }
 }

@@ -13,13 +13,19 @@ namespace PariMan.Lambda.GetPari
 {
     public class Function
     {
-        public async Task<PariResponse<PariItem>> FunctionHandler(PariItem item, ILambdaContext context)
+        private readonly IRun _app;
+        private readonly IPari _handler;
+
+        public Function()
         {
             var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x => x.AddSingleton<IPari, Pari>());
-            var app = serviceProvider.GetService<IRun>();
-            var handler = serviceProvider.GetService<IPari>();
+            _app = serviceProvider.GetService<IRun>();
+            _handler = serviceProvider.GetService<IPari>();
+        }
 
-            return await app.Run(handler.Get, item?.Id, context.AwsRequestId);
+        public async Task<PariResponse<PariItem>> FunctionHandler(PariItem item, ILambdaContext context)
+        {
+            return await _app.Run(_handler.Get, item?.Id, context.AwsRequestId);
         }
     }
 }

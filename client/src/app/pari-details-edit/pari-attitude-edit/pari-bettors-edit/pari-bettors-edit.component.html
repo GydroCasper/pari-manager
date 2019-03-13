@@ -1,3 +1,11 @@
-<div *ngFor="let bettor of bettors">
-  <app-pari-bettor-edit [bettor]="bettor"></app-pari-bettor-edit>
+<div class="row">
+  <div class="col-12">
+    <span class="float-right">
+      <button type="button" class="btn btn-link" (click)="addBettor()">Добавить спорщика</button>
+    </span>
+  </div>
+
+  <div class="col-12" *ngFor="let bettor of bettors">
+    <app-pari-bettor-edit [bettor]="bettor"></app-pari-bettor-edit>
+  </div>
 </div>

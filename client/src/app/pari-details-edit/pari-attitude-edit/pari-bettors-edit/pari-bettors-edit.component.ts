@@ -8,6 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PariBettorsEditComponent implements OnInit {
   @Input() bettors: string[];
 
+  addBettor() {
+    if(!this.bettors) this.bettors = [];
+    this.bettors.push('');
+  }
+
   constructor() { }
 
   ngOnInit() {

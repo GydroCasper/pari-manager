@@ -10,7 +10,7 @@ namespace PariService.Helpers
 {
     public static class ServiceCollectionFactory
     {
-        public static IServiceProvider AddPariDependencies(Func<IServiceCollection, IServiceCollection> registerDependencies)
+        public static IServiceProvider AddPariDependencies(Action<IServiceCollection> registerDependencies)
         {
             var services = new ServiceCollection();
 

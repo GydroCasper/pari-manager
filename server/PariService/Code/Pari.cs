@@ -31,7 +31,7 @@ namespace PariService.Code
 
         public async Task<PariItem> Get(Guid? id)
         {
-            if(!id.HasValue) throw new PariException("Bet is empty");
+            if (!id.HasValue) throw new PariException("Bet is empty");
 
             var item = (from p in _dbContext.Paris
                 join j in _dbContext.Judges on p.Id equals j.PariId
@@ -60,9 +60,19 @@ namespace PariService.Code
                     Judges = pari.Select(x => x.Judges.DisplayName).Distinct().ToList()
                 }).SingleOrDefault();
 
-            if(item == null) throw new PariException("Bet not found", $"pariDb: {id}");
+            if (item == null) throw new PariException("Bet not found", $"pariDb: {id}");
 
             return _mapper.Map<PariItem>(item);
+        }
+
+        public async Task<Guid> Create(PariItem pari)
+        {
+            if(pari == null) throw new PariException("Bet is empty");
+
+            pari.Id = Guid.NewGuid();
+            _dbContext.Add(_mapper.Map<Paris>(pari));
+            _dbContext.SaveChanges();
+            return pari.Id;
         }
     }
 }

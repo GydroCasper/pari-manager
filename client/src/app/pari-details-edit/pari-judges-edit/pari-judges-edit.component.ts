@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PariJudgesEditComponent implements OnInit {
   @Input() judges: string[];
 
-  addJudge() {
+  add() {
     if(!this.judges) this.judges = [];
     this.judges.push('');
   }

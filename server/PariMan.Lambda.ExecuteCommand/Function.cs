@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using PariService.Code;
 using PariService.Helpers;
 using PariService.Interfaces;
 
@@ -18,9 +19,20 @@ namespace PariMan.Lambda.ExecuteCommand
         {
             try
             {
-                var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x => x.AddTransient(typeof(ICommandHandler), input.Name.GetHandler()));
+                var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x =>
+                {
+                    x.AddSingleton<IPari, Pari>();
+                    x.AddTransient(typeof(ICommandHandler), input.Name.GetHandler());
+                });
+
                 var app = serviceProvider.GetService<IRun>();
                 var handler = serviceProvider.GetService<ICommandHandler>();
+
+                Console.WriteLine("========================================================");
+                Console.WriteLine($"Command executing: {input.Name}");
+                Console.WriteLine($"Command body: {JsonConvert.SerializeObject(input.Body)}");
+                Console.WriteLine($"Command requestId: {context.AwsRequestId}");
+                Console.WriteLine("========================================================");
 
                 return await app.Run(handler.Handle, input.Body, context.AwsRequestId);
             }

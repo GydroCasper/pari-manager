@@ -19,6 +19,6 @@ namespace PariService.Dto
         public List<string> Judges;
 
         [JsonProperty("attitudes")]
-        public List<Attitude> Attitudes;
+        public List<AttitudeItem> Attitudes;
     }
 }

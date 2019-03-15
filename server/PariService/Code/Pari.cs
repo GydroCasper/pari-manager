@@ -15,11 +15,13 @@ namespace PariService.Code
     {
         private readonly PariDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IAttitude _attitude;
 
-        public Pari(PariDbContext dbContext, IMapper mapper)
+        public Pari(PariDbContext dbContext, IMapper mapper, IAttitude attitude)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _attitude = attitude;
         }
 
         public async Task<List<PariItem>> Get()
@@ -49,7 +51,7 @@ namespace PariService.Code
                     Date = pari.Key.Date,
                     Attitudes = pari
                         .GroupBy(x => x.Attitudes)
-                        .Select(x => new Attitude
+                        .Select(x => new AttitudeItem
                         {
                             Id = x.Key.Id,
                             Name = x.Key.Name,
@@ -67,12 +69,22 @@ namespace PariService.Code
 
         public async Task<Guid> Create(PariItem pari)
         {
-            if(pari == null) throw new PariException("Bet is empty");
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                if (pari == null) throw new PariException("Bet is empty");
 
-            pari.Id = Guid.NewGuid();
-            _dbContext.Add(_mapper.Map<Paris>(pari));
-            _dbContext.SaveChanges();
-            return pari.Id;
+                pari.Id = Guid.NewGuid();
+                _dbContext.Add(_mapper.Map<Paris>(pari));
+                _dbContext.SaveChanges();
+
+                foreach (var attitude in pari.Attitudes)
+                {
+                    await _attitude.Create(attitude, pari.Id);
+                }
+
+                transaction.Commit();
+                return pari.Id;
+            }
         }
     }
 }

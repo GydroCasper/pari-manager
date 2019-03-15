@@ -22,6 +22,7 @@ namespace PariMan.Lambda.ExecuteCommand
                 var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x =>
                 {
                     x.AddSingleton<IPari, Pari>();
+                    x.AddSingleton<IAttitude, Attitude>();
                     x.AddTransient(typeof(ICommandHandler), input.Name.GetHandler());
                 });
 

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace PariService.Dto
 {
-    public class Attitude
+    public class AttitudeItem
     {
         [JsonProperty("id")]
         public Guid Id;

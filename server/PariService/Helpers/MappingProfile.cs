@@ -9,6 +9,7 @@ namespace PariService.Helpers
         public MappingProfile()
         {
             CreateMap<Paris, PariItem>();
+            CreateMap<AttitudeItem, Attitudes>();
         }
     }
 }

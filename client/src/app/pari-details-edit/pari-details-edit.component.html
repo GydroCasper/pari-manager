@@ -13,3 +13,11 @@
 <div class="text-right py-3">
     <input class="btn btn-primary" value="Сохранить спор" (click)="save()">
 </div>
+
+<div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+</div>

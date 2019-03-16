@@ -13,5 +13,6 @@ cd ../..
 cd ./server/PariMan.Lambda.ExecuteCommand
 dotnet build
 dotnet lambda deploy-function pariMan-execute-command --profile gydrocasper
+cd ../..
 dir
 

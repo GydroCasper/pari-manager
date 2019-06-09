@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule  } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,10 +23,10 @@ import { PariBettorEditComponent } from './pari-details-edit/pari-attitude-edit/
 import { PariJudgeEditComponent } from './pari-details-edit/pari-judges-edit/pari-judge-edit/pari-judge-edit.component';
 
 const appRoutes: Routes = [
-  { path: '', component: PariListComponent},
-  { path: 'pari/:id/edit', component: PariDetailsEditComponent},
-  { path: 'pari/edit', component: PariDetailsEditComponent},
-  { path: 'pari/:id', component: PariDetailsComponent}
+  { path: '', component: PariListComponent },
+  { path: 'pari/:id/edit', component: PariDetailsEditComponent },
+  { path: 'pari/edit', component: PariDetailsEditComponent },
+  { path: 'pari/:id', component: PariDetailsComponent }
 ]
 
 @NgModule({
@@ -48,7 +50,14 @@ const appRoutes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule
   ],
   providers: [
     {
@@ -57,6 +66,7 @@ const appRoutes: Routes = [
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatDatepickerModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule]
 })
 export class AppModule { }

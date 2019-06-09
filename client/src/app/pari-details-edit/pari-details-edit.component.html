@@ -1,23 +1,28 @@
-Суть спора:
-<textarea class="form-control" rows="5" value [(ngModel)]="pari.name"></textarea>
-
-<div>
-    Дата окончания спора:
-    <input type="text">
+<div class="row m-tb-1">
+    <div class="col">
+        Суть спора:
+        <textarea class="form-control" rows="5" value [(ngModel)]="pari.name"></textarea>
+    </div>
 </div>
 
-<app-pari-attitude-edit *ngFor="let attitude of pari.attitudes" [attitude]="attitude"></app-pari-attitude-edit>
+<div class="row m-tb-1">
+    <div class="col">
+        <mat-form-field>
+            <input matInput [matDatepicker]="pariFinishDateDateTimePicker" placeholder="Дата окончания спора" [(ngModel)]="pari.date">
+            <mat-datepicker-toggle matSuffix [for]="pariFinishDateDateTimePicker"></mat-datepicker-toggle>
+            <mat-datepicker #pariFinishDateDateTimePicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="row m-tb-1">
+    <div class="col">
+        <app-pari-attitude-edit *ngFor="let attitude of pari.attitudes" [attitude]="attitude"></app-pari-attitude-edit>
+    </div>
+</div>
 
 <app-pari-judges-edit [judges]="pari.judges"></app-pari-judges-edit>
 
 <div class="text-right py-3">
     <input class="btn btn-primary" value="Сохранить спор" (click)="save()">
-</div>
-
-<div>
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-      </mat-form-field>
 </div>

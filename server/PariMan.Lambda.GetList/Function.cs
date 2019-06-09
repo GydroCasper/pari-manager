@@ -19,7 +19,13 @@ namespace PariMan.Lambda.GetList
 
         public Function()
         {
-            var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x => x.AddSingleton<IPariList, Pari>());
+            var serviceProvider = ServiceCollectionFactory.AddPariDependencies(x =>
+            {
+
+                x.AddSingleton<IPariList, Pari>();
+                x.AddSingleton<IAttitude, Attitude>();
+            });
+
             _app = serviceProvider.GetService<IRun>();
             _handler = serviceProvider.GetService<IPariList>();
         }

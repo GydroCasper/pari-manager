@@ -8,6 +8,7 @@
 # dependencies
 /client/node_modules
 /node_modules
+/client/node_modules
 
 # profiling files
 chrome-profiler-events.json
@@ -382,3 +383,4 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 /client/dist/pari-manager
+/.vscode

@@ -1,4 +1,7 @@
+using System.Threading.Tasks;
 using Amazon.Lambda.Core;
+using PariService.Code;
+using PariService.Dto;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -7,16 +10,10 @@ namespace PariManager
 {
     public class Function
     {
-        
-        /// <summary>
-        /// A simple function that takes a string and does a ToUpper
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public string FunctionHandler(HuyEvent input, ILambdaContext context)
+        public async Task<object> FunctionHandler(object input, ILambdaContext context)
         {
-            return "Poka chto huy";
+            var query = new Query();
+            return await query.Execute((QueryDto)input);
         }
     }
 }

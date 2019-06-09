@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-12">
+    <span class="float-right">
+      <button type="button" class="btn btn-link" (click)="add()">Добавить судью</button>
+    </span>
+  </div>
+
+  <div class="col-12" *ngFor="let judge of judges">
+    <app-pari-judge-edit [judge]="judge"></app-pari-judge-edit>
+  </div>
+</div>

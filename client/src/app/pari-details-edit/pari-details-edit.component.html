@@ -1,2 +1,23 @@
 Суть спора:
-<textarea class="form-control" rows="5"></textarea>
+<textarea class="form-control" rows="5" value [(ngModel)]="pari.name"></textarea>
+
+<div>
+    Дата окончания спора:
+    <input type="text">
+</div>
+
+<app-pari-attitude-edit *ngFor="let attitude of pari.attitudes" [attitude]="attitude"></app-pari-attitude-edit>
+
+<app-pari-judges-edit [judges]="pari.judges"></app-pari-judges-edit>
+
+<div class="text-right py-3">
+    <input class="btn btn-primary" value="Сохранить спор" (click)="save()">
+</div>
+
+<div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+</div>

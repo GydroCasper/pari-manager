@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,14 @@ import { PariItemComponent } from './pari-item/pari-item.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PariDetailsEditComponent } from './pari-details-edit/pari-details-edit.component';
 import { PariJudgesComponent } from './pari-details/pari-judges/pari-judges.component';
+import { PariAttitudeComponent } from './pari-details/pari-attitude/pari-attitude.component';
+import { PariBettorsComponent } from './pari-details/pari-attitude/pari-bettor/pari-bettors.component';
+import { ResponseInterceptor } from './interceptors/response-interceptor';
+import { PariAttitudeEditComponent } from './pari-details-edit/pari-attitude-edit/pari-attitude-edit.component';
+import { PariJudgesEditComponent } from './pari-details-edit/pari-judges-edit/pari-judges-edit.component';
+import { PariBettorsEditComponent } from './pari-details-edit/pari-attitude-edit/pari-bettors-edit/pari-bettors-edit.component';
+import { PariBettorEditComponent } from './pari-details-edit/pari-attitude-edit/pari-bettors-edit/pari-bettor-edit/pari-bettor-edit.component';
+import { PariJudgeEditComponent } from './pari-details-edit/pari-judges-edit/pari-judge-edit/pari-judge-edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: PariListComponent},
@@ -24,14 +34,29 @@ const appRoutes: Routes = [
     PariDetailsComponent,
     PariItemComponent,
     PariDetailsEditComponent,
-    PariJudgesComponent
+    PariJudgesComponent,
+    PariAttitudeComponent,
+    PariBettorsComponent,
+    PariAttitudeEditComponent,
+    PariJudgesEditComponent,
+    PariBettorsEditComponent,
+    PariBettorEditComponent,
+    PariJudgeEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-header">
+    {{attitude.name}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{attitude.description}}</p>
+    <app-pari-bettors [bettors]="attitude.bettors"></app-pari-bettors>
+  </div>
+</div>
